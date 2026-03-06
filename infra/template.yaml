@@ -63,6 +63,18 @@ Resources:
           var request = event.request;
           var uri = request.uri;
 
+          if (uri === '/invite-warden' || uri === '/invite-warden.html' || uri.indexOf('/invite-warden/') === 0) {
+            return {
+              statusCode: 404,
+              statusDescription: 'Not Found',
+              headers: {
+                'content-type': { value: 'text/plain; charset=UTF-8' },
+                'cache-control': { value: 'no-store' }
+              },
+              body: 'Not Found'
+            };
+          }
+
           if (uri === '/') {
             return request;
           }
